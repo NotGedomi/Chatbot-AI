@@ -1,0 +1,427 @@
+/* Estilos generales */
+body,
+html {
+  background-color: #2c2c54;
+  font-family: "DM Sans", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor del chat */
+#chat-container {
+  background-color: #2c2c54;
+  border-radius: 10px;
+  width: 600px;
+  padding: 20px;
+}
+
+/* Historial del chat */
+#chat-history {
+  height: 500px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Entrada del usuario */
+.input-container,
+#input-container {
+  font-family: "DM Sans", sans-serif !important;
+  display: flex;
+  align-items: center;
+  background-color: #40407a;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+#user-input {
+  font-family: "DM Sans", sans-serif !important;
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #40407a;
+  color: white;
+}
+
+#user-input::placeholder {
+  color: #2c2c54;
+}
+
+/* Botón del micrófono */
+.material-icons {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 10px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  outline: none;
+  color: #2c2c54;
+}
+
+.material-icons:hover {
+  opacity: 0.7;
+}
+
+.material-icons:active {
+  transform: scale(1.1);
+  color: #706fd3;
+  opacity: 1;
+}
+
+.material-icons.inactive {
+  transform: none !important;
+  color: #2c2c54 !important;
+  opacity: 1 !important;
+}
+
+/* Estilos de los mensajes */
+.message {
+  font-family: "DM Sans", sans-serif;
+  word-wrap: break-word;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.message.visible {
+  font-family: "DM Sans", sans-serif;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message.user {
+  background-color: #27274c;
+  text-align: left;
+}
+
+.message.bot {
+  text-align: left;
+}
+
+@keyframes typing {
+  0% {
+    content: "";
+  }
+  25% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  75% {
+    content: "...";
+  }
+}
+
+.message.typing::after {
+  content: "";
+  animation: typing 1s infinite;
+}
+
+.message.typing {
+  color: #ffffff;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 6px;
+}
+
+.link-css {
+  display: contents;
+}
+
+.message.bot a {
+  color: #ffffff !important;
+  text-decoration: none;
+  background: #40407a;
+  padding: 0px 10px;
+  border-radius: 5px;
+}
+/* Estilos personalizados del scrollbar */
+
+#chat-history::-webkit-scrollbar {
+  width: 8px;
+}
+
+#chat-history::-webkit-scrollbar-track {
+  background: #40407a;
+  border-radius: 10px;
+  margin: 100px;
+}
+
+#chat-history::-webkit-scrollbar-thumb {
+  background-color: #706fd3;
+  border-radius: 10px;
+}
+
+#chat-history::-webkit-scrollbar-thumb:hover {
+  background-color: #5e5ccf;
+}
+
+.message-container.user {
+  position: relative;
+}
+
+.message-container.bot {
+  position: relative;
+}
+
+.message.user {
+  color: #ffffff;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 6px;
+}
+
+.message.bot {
+  color: #ffffff;
+  margin-left: 0;
+  margin-right: 0;
+  border-radius: 6px;
+}
+
+/* Añade estilos para el enlace en la respuesta del chatbot */
+.message.bot a {
+  text-decoration: none;
+}
+
+.message.bot a:hover {
+  filter: brightness(110%);
+}
+
+#char-counter {
+  color: #27274c; /* Color inicial blanco */
+  font-size: 12px;
+  float: right;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.shake {
+  animation: shake 0.1s;
+  animation-iteration-count: 1;
+}
+
+/* Modo Lectura */
+
+.switch-container {
+  margin: 10px 0px;
+  display: flex;
+  justify-content: right;
+  height: 30px;
+  background-color: #27274c;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.switch {
+  display: flex;
+  justify-content: right;
+  margin: auto 3px;
+}
+
+.switch-container input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.fa-solid.fa-ear-listen.fa-lg {
+  color: #40407a;
+  cursor: pointer;
+  filter: brightness(1.2);
+}
+
+.switch-container input:checked ~ .fa-solid.fa-ear-listen.fa-lg {
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#voice-status {
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif !important;
+  font-size: 12px;
+  margin: auto;
+  margin-right: 5px;
+  opacity: 0; /* Inicialmente, establecemos la opacidad en 0 */
+  transition: opacity 1s; /* Transición de 1 segundo para la propiedad 'opacity' */
+}
+
+
+#voice-status.fade-out {
+  opacity: 0; /* Opacidad 0 para desvanecer el elemento */
+}
+
+/* POPUP Inicial */
+/* Estilos para el popup */
+#popup-container {
+  font-family: "DM Sans", sans-serif !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup-content {
+  background-color: #2c2c54;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  text-align: center;
+  cursor: default;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.popup-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.popup-text {
+  font-family: "DM Sans", sans-serif !important;
+  white-space: pre-line;
+  font-size: 15px;
+  color: #ffffff;
+}
+
+.popup-image {
+  max-width: 100%;
+  height: 120px;
+  filter: grayscale(1);
+}
+
+.popup-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.popup-link {
+  font-family: "DM Sans", sans-serif !important;
+  color: #ffff;
+  text-decoration: auto;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 20px;
+  border: 2px solid;
+}
+
+/* Agregar la animación para desvanecer las opciones de preguntas por defecto */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    visibility: hidden;
+  }
+}
+
+/* Estilo para las opciones de preguntas por defecto */
+.default-question {
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  opacity: 0; /* Inicialmente, la opacidad es 0 para que aparezcan con la animación */
+  transition: opacity 0.5s ease;
+}
+
+.default-question.visible {
+  opacity: 1;
+  width: 90%;
+  margin: auto;
+  background: #40407a;
+  color: #ffffff;
+  text-align: center;
+  font-size: 15px;
+}
+
+.message-container.default-question {
+  background-color: transparent;
+}
+
+/* Agregamos la animación para mostrar el question-options */
+.question-options {
+  display: flex !important;
+  flex-direction: row;
+}
+
+.question-options.show {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Definimos la animación fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.message.default-question.visible:hover {
+filter: opacity(70%);
+}

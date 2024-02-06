@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/uploadPage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Chatbot QA File Uploader</title>
+</head>
+
+<body>
+    <div id="main-container">
+        <div class="files-main">
+            <div id="title">
+                <h1>Carga de Archivos</h1>
+            </div>
+            <div id="form-container">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input class="custom-input" type="file" name="file" id="fileInput"
+                        accept=".txt,.pdf,.docx,.json,.jsonl,.csv">
+                    <button type="button" id="uploadButton">
+                        <i class="fa-solid fa-upload fa-lg" style="color: #ffffff;"></i>
+                    </button>
+                </form>
+            </div>
+            <div id="popup" style="display: none;">
+                <p>Operación realizada correctamente</p>
+            </div>
+            <div id="fileList"></div>
+        </div>
+        <div class="links-main">
+            <div id="title">
+                <h1>Carga de Enlaces</h1>
+            </div>
+            <div id="link-container">
+                <!-- Nuevo campo para ingresar el enlace -->
+                <input class="custom-input" type="text" name="link" id="linkInput" placeholder="Ingrese el enlace aquí">
+                <!-- Botón para enviar el enlace -->
+                <button type="button" id="sendLinkButton">Añadir</button>
+            </div>
+            <div id="linkList">
+                <div id="links">
+                </div>
+            </div>
+            <div>
+                <button id="loadButton">Actualizar Dataset</button>
+            </div>
+        </div>
+    </div>
+    <script src="scripts/uploadPage.js"></script>
+</body>
+
+</html>

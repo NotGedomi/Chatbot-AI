@@ -14,6 +14,9 @@ import {
   injest_docs
 } from './tools/multipleLoader.js'
 
+// MODIFICAR SI NECESITAS CAMBIAR LA BASE PARA LAS RUTAS DE LA API
+const base_path = "";
+
 // Configuración de dotenv
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +46,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Ruta de estado de salud
-app.get("/api/health", async (req, res) => {
+app.get(`${base_path}/api/health`, async (req, res) => {
   res.json({
     success: true,
     message: "El servidor está funcionando correctamente",
@@ -51,7 +54,7 @@ app.get("/api/health", async (req, res) => {
 });
 
 // Ruta principal de consulta
-app.get("/api/ask", async (req, res, next) => {
+app.get(`${base_path}/api/ask`, async (req, res, next) => {
   try {
     const llmA = new OpenAI({
       temperature: 0.5,
@@ -89,7 +92,7 @@ app.get("/api/ask", async (req, res, next) => {
 });
 
 // Ruta de carga de archivos
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post(`${base_path}/api/upload`, upload.single("file"), (req, res) => {
   res.json({
     success: true,
     message: "Archivo subido exitosamente",
@@ -97,7 +100,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 // Ruta para obtener la lista de archivos con extensiones específicas
-app.get("/api/files", (req, res) => {
+app.get(`${base_path}/api/files`, (req, res) => {
   const directory = path.join(__dirname, "documents");
   const allowedExtensions = [".txt", ".pdf", ".docx", ".json", ".jsonl", ".csv"]; // Lista de extensiones permitidas
 
@@ -122,7 +125,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Ruta para recibir y almacenar el enlace desde el frontend
-app.post("/api/uploadLink", (req, res) => {
+app.post(`${base_path}/api/uploadLink`, (req, res) => {
   const link = req.body.link;
 
   if (!link) {
@@ -155,7 +158,7 @@ app.post("/api/uploadLink", (req, res) => {
 });
 
 // Ruta para obtener la lista de enlaces desde el archivo "links.txt"
-app.get("/api/getLinks", (req, res) => {
+app.get(`${base_path}/api/getLinks`, (req, res) => {
   const filePath = path.join(__dirname, "links", "links.txt");
 
   fs.readFile(filePath, "utf-8", (err, data) => {
@@ -170,7 +173,7 @@ app.get("/api/getLinks", (req, res) => {
 });
 
 // Ruta para eliminar un enlace desde el archivo "links.txt"
-app.delete("/api/deleteLink", (req, res) => {
+app.delete(`${base_path}/api/deleteLink`, (req, res) => {
   const link = req.query.link;
   const filePath = path.join(__dirname, "links", "links.txt");
 
@@ -194,7 +197,7 @@ app.delete("/api/deleteLink", (req, res) => {
 });
 
 // Ruta para editar un enlace en el archivo "links.txt"
-app.put("/api/editLink", (req, res) => {
+app.put(`${base_path}/api/editLink`, (req, res) => {
   const link = req.query.link;
   const newLink = req.query.newLink;
   const filePath = path.join(__dirname, "links", "links.txt");
@@ -224,7 +227,7 @@ app.put("/api/editLink", (req, res) => {
 });
 
 // Ruta para descargar un archivo
-app.get("/api/download", (req, res) => {
+app.get(`${base_path}/api/download`, (req, res) => {
   const fileName = req.query.fileName;
   const filePath = path.join(__dirname, "documents", fileName);
   res.download(filePath, (err) => {
@@ -236,7 +239,7 @@ app.get("/api/download", (req, res) => {
 });
 
 // Ruta para eliminar un archivo
-app.delete("/api/delete", (req, res) => {
+app.delete(`${base_path}/api/delete`, (req, res) => {
   const fileName = req.query.fileName;
   const filePath = path.join(__dirname, "documents", fileName);
   fs.unlink(filePath, (err) => {
@@ -250,7 +253,7 @@ app.delete("/api/delete", (req, res) => {
 });
 
 // Ruta para renombrar un archivo
-app.put("/api/rename", (req, res) => {
+app.put(`${base_path}/api/rename`, (req, res) => {
   const fileName = req.query.fileName;
   const newFileName = req.query.newFileName;
   const filePath = path.join(__dirname, "documents", fileName);
@@ -271,7 +274,7 @@ app.put("/api/rename", (req, res) => {
 });
 
 // Crear una ruta para injestDocs
-app.get('/api/injestDocs', async (req, res, next) => {
+app.get(`${base_path}/api/injestDocs`, async (req, res, next) => {
   try {
       await injest_docs()  // Llama a la función injest_docs
       res.sendStatus(200)

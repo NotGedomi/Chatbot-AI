@@ -1,6 +1,10 @@
+
+// MODIFICAR SI NECESITAS CAMBIAR LA BASE PARA LAS RUTAS DE LA API
+const base_path = "https://gedomi-chatbot.onrender.com"; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
+
 // Obtener la lista de archivos y mostrarlos en el div correspondiente
 function fetchFileList() {
-  fetch("https://gedomi-chatbot.onrender.com/api/files")
+  fetch(`${base_path}/api/files`)
     .then((response) => response.json())
     .then((data) => {
       const fileListDiv = document.getElementById("fileList");
@@ -24,12 +28,12 @@ function fetchFileList() {
 
 // Función para descargar un archivo
 function downloadFile(fileName) {
-  window.location.href = `/api/download?fileName=${fileName}`;
+  window.location.href = `${base_path}/api/download?fileName=${fileName}`;
 }
 
 // Función para eliminar un archivo
 function deleteFile(fileName) {
-  fetch(`/api/delete?fileName=${fileName}`, {
+  fetch(`${base_path}/api/delete?fileName=${fileName}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -56,7 +60,7 @@ function deleteFile(fileName) {
 function renameFile(fileName) {
   const newFileName = prompt("Ingresa el nuevo nombre del archivo:");
   if (newFileName) {
-    fetch(`/api/rename?fileName=${fileName}&newFileName=${newFileName}`, {
+    fetch(`${base_path}/api/rename?fileName=${fileName}&newFileName=${newFileName}`, {
       method: "PUT",
     })
       .then((response) => response.json())
@@ -87,7 +91,7 @@ function sendLink() {
 
   // Verificar si se ingresó un enlace
   if (link) {
-    fetch("https://gedomi-chatbot.onrender.com/api/uploadLink", {
+    fetch(`${base_path}/api/uploadLink`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +128,7 @@ function openLink(link) {
 
 // Función para mostrar la lista de enlaces desde el archivo "links.txt"
 function fetchLinkList() {
-  fetch("https://gedomi-chatbot.onrender.com/api/getLinks")
+  fetch(`${base_path}/api/getLinks`)
     .then((response) => response.json())
     .then((data) => {
       const linksDiv = document.getElementById("links");
@@ -152,7 +156,7 @@ function fetchLinkList() {
 
 // Función para eliminar un enlace desde el archivo "links.txt"
 function deleteLink(link) {
-  fetch(`/api/deleteLink?link=${encodeURIComponent(link)}`, {
+  fetch(`${base_path}/api/deleteLink?link=${encodeURIComponent(link)}`, {
     method: "DELETE",
   })
     .then((response) => response.json())
@@ -179,7 +183,7 @@ function deleteLink(link) {
 function editLink(link) {
   const newLink = prompt("Ingresa el nuevo enlace:", link);
   if (newLink !== null && newLink !== link) {
-    fetch(`/api/editLink?link=${encodeURIComponent(link)}&newLink=${encodeURIComponent(newLink)}`, {
+    fetch(`${base_path}/api/editLink?link=${encodeURIComponent(link)}&newLink=${encodeURIComponent(newLink)}`, {
       method: "PUT",
     })
       .then((response) => response.json())
@@ -230,7 +234,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
     if (allowedExtensions.includes(fileExtension)) {
       const formData = new FormData();
       formData.append("file", file);
-      fetch("https://gedomi-chatbot.onrender.com//api/upload", {
+      fetch(`${base_path}/api/upload`, {
         method: "POST",
         body: formData,
       })
@@ -263,7 +267,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
 
 // Actualizar Dataset
 document.getElementById("loadButton").addEventListener("click", () => {
-  fetch("https://gedomi-chatbot.onrender.com/api/injestDocs")
+  fetch(`${base_path}/api/injestDocs`)
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok");
       return response;

@@ -11,6 +11,9 @@ let timer;
 let linkPreviewDisplayed = false;
 let voiceEnabled = false;
 
+// MODIFICAR SI NECESITAS CAMBIAR LA BASE PARA LAS RUTAS DE LA API
+const base_path = "https://gedomi-chatbot.onrender.com"; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
+
 /*POPUP de bienvenida*/
 document.addEventListener("DOMContentLoaded", function () {
   const popupContainer = document.createElement("div");
@@ -184,7 +187,7 @@ async function sendMessage(message) {
 
     showTypingMessage();
 
-    const response = await fetch(`https://gedomi-chatbot.onrender.com/api/ask?question=${encodeURIComponent(message)}`);
+    const response = await fetch(`${base_path}/api/ask?question=${encodeURIComponent(message)}`);
 
     if (response.ok) {
       const data = await response.json();

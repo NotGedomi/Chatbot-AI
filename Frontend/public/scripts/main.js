@@ -184,7 +184,7 @@ async function sendMessage(message) {
 
     showTypingMessage();
 
-    const response = await fetch(`/api/ask?question=${encodeURIComponent(message)}`);
+    const response = await fetch(`https://gedomi-chatbot.onrender.com/api/ask?question=${encodeURIComponent(message)}`);
 
     if (response.ok) {
       const data = await response.json();

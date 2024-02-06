@@ -1,6 +1,6 @@
 // Obtener la lista de archivos y mostrarlos en el div correspondiente
 function fetchFileList() {
-  fetch("/api/files")
+  fetch("https://gedomi-chatbot.onrender.com/api/files")
     .then((response) => response.json())
     .then((data) => {
       const fileListDiv = document.getElementById("fileList");
@@ -87,7 +87,7 @@ function sendLink() {
 
   // Verificar si se ingresó un enlace
   if (link) {
-    fetch("/api/uploadLink", {
+    fetch("https://gedomi-chatbot.onrender.com/api/uploadLink", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +124,7 @@ function openLink(link) {
 
 // Función para mostrar la lista de enlaces desde el archivo "links.txt"
 function fetchLinkList() {
-  fetch("/api/getLinks")
+  fetch("https://gedomi-chatbot.onrender.com/api/getLinks")
     .then((response) => response.json())
     .then((data) => {
       const linksDiv = document.getElementById("links");
@@ -230,7 +230,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
     if (allowedExtensions.includes(fileExtension)) {
       const formData = new FormData();
       formData.append("file", file);
-      fetch("/api/upload", {
+      fetch("https://gedomi-chatbot.onrender.com//api/upload", {
         method: "POST",
         body: formData,
       })
@@ -263,7 +263,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
 
 // Actualizar Dataset
 document.getElementById("loadButton").addEventListener("click", () => {
-  fetch("/api/injestDocs")
+  fetch("https://gedomi-chatbot.onrender.com/api/injestDocs")
     .then((response) => {
       if (!response.ok) throw new Error("Network response was not ok");
       return response;

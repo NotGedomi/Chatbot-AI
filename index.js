@@ -45,6 +45,11 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
+// Ruta para servir el archivo index.html cuando se visita la raíz del sitio
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // Ruta de estado de salud
 app.get(`${base_path}/api/health`, async (req, res) => {
   res.json({

@@ -1,1 +1,2 @@
 https://js.langchain.com/docs/modules/data_connection/document_loaders/integrations/web_loaders/web_puppeteer
+https://google.com

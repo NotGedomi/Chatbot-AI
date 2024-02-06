@@ -12,7 +12,7 @@ let linkPreviewDisplayed = false;
 let voiceEnabled = false;
 
 // MODIFICAR SI NECESITAS CAMBIAR LA BASE PARA LAS RUTAS DE LA API
-const base_path = "https://gedomi-chatbot.onrender.com"; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
+const base_path = ""; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
 
 /*POPUP de bienvenida*/
 document.addEventListener("DOMContentLoaded", function () {

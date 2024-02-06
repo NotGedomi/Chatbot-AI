@@ -1,6 +1,6 @@
 
 // MODIFICAR SI NECESITAS CAMBIAR LA BASE PARA LAS RUTAS DE LA API
-const base_path = "https://gedomi-chatbot.onrender.com"; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
+const base_path = ""; // MODIFICAR SEGUN DONDE CORRA TU BACKEND
 
 // Obtener la lista de archivos y mostrarlos en el div correspondiente
 function fetchFileList() {
@@ -89,7 +89,7 @@ function sendLink() {
   const linkInput = document.getElementById("linkInput");
   const link = linkInput.value;
 
-  // Verificar si se ingresó un enlace
+  // Verifica si se ingresó un enlace
   if (link) {
     fetch(`${base_path}/api/uploadLink`, {
       method: "POST",
@@ -101,16 +101,16 @@ function sendLink() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          // Mostrar el mensaje de enlace enviado correctamente
+          // Muestra el mensaje de enlace enviado correctamente
           const popup = document.getElementById("popup");
           popup.style.display = "block";
           setTimeout(() => {
             popup.style.display = "none";
-          }, 2000);
-          // Limpiar el campo de entrada del enlace
+          },  2000);
+          // Limpia el campo de entrada del enlace
           linkInput.value = "";
-          // Actualizar la lista de archivos en el div
-          fetchFileList();
+          // Actualiza la lista de enlaces en el div
+          fetchLinkList(); // Llama a esta función para refrescar la lista de enlaces
         } else {
           console.error("Error al enviar el enlace:", data.error);
         }
@@ -214,21 +214,14 @@ document.getElementById("sendLinkButton").addEventListener("click", sendLink);
 fetchLinkList();
 
 // Evento de click para subir un archivo
-document.getElementById("uploadButton").addEventListener("change", () => {
+document.getElementById("uploadButton").addEventListener("click", function() {
   const fileInput = document.getElementById("fileInput");
   const file = fileInput.files[0];
 
   // Verificar si se seleccionó un archivo
   if (file) {
-    const allowedExtensions = [
-      ".txt",
-      ".pdf",
-      ".docx",
-      ".json",
-      ".jsonl",
-      ".csv",
-    ]; // Lista de extensiones permitidas
-    const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase(); // Convert to lowercase
+    const allowedExtensions = ["txt", "pdf", "docx", "json", "jsonl", "csv"];
+    const fileExtension = file.name.split('.').pop().toLowerCase();
 
     // Verificar si la extensión del archivo está permitida
     if (allowedExtensions.includes(fileExtension)) {
@@ -246,7 +239,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
             popup.style.display = "block";
             setTimeout(() => {
               popup.style.display = "none";
-            }, 2000);
+            },  2000);
             // Limpiar el campo de entrada de archivos
             fileInput.value = "";
             // Actualizar la lista de archivos en el div
@@ -264,6 +257,7 @@ document.getElementById("uploadButton").addEventListener("change", () => {
     }
   }
 });
+
 
 // Actualizar Dataset
 document.getElementById("loadButton").addEventListener("click", () => {

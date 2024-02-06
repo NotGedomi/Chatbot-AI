@@ -8,10 +8,10 @@ Asistente personalizado hecho con Node.js y Langchain utilizando la API de OpenA
 ### Notas:
 Recuerda añadir dentro del archivo .env tu **key** de **OpenAI** en 'OPENAI_API_KEY'.
 
-### Instalación del Backend: 
+### Instalación: 
 Para instalar las librerías necesarias del chatbot, sigue estos pasos:
 
-- 1- Navega a la carpeta de tu proyecto (Donde esté alojada la carpeta Backend) en la línea de comandos o terminal.
+- 1- Navega a la carpeta de tu proyecto en la línea de comandos o terminal.
 - 2- Ejecuta el siguiente comando en la línea de comandos o terminal para instalar las librerías especificadas en el archivo package.json:
 
 ```
@@ -23,6 +23,6 @@ npm install
 node index
 ```
 
-### Instalación del Frontend: 
-El chatbot cuenta con un client que permite interactuar con el Backend instalado previamente, es altamente modificable ya que esta creado en HTML, CSS y JS.
+### Datos Adicionales: 
+El chatbot es altamente modificable ya que esta creado en HTML, CSS y JS.
 Tambien se añadió un panel gráfico en el endpoint "/upload" el cual les permite modificar, eliminar y descargar los archivos o fuentes cargadas previamente, también puedes incluir enlaces.

@@ -1,4 +1,4 @@
-# Chatbot-AI-Langchain
+# Chatbot-AI
 Asistente personalizado hecho con Node.js y Langchain utilizando la API de OpenAI y su modelo GTP 3.5 Turbo. Esta potenciado para trabajar con archivos ".txt",".pdf",".docx",".json",".jsonl",".csv" y links de fuentes web, además incluye un modo lectura y reconocimiento de voz.
 
 ## Prerrequisitos:
